@@ -10,6 +10,14 @@ import UIKit
 
 class EarthquakeCell: UITableViewCell {
 
+    
+    //MARK: IBOulets
+    @IBOutlet weak var latitudeLabel: UILabel!
+    @IBOutlet weak var longitudeLabel: UILabel!
+    @IBOutlet weak var magnitudeLabel: UILabel!
+    @IBOutlet weak var datetimeLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
