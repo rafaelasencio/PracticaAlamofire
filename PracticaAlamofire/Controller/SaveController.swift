@@ -22,20 +22,54 @@ class SaveController: UIViewController {
     
     
     // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Save Data"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(dismissController))
+        latitudeTextfield.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        longitudeTextfield.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        magnitudeTextfield.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        setUI()
         loadData()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        formValidation()
+
     }
     
     // MARK: - Actions
     @objc func dismissController(){
         dismiss(animated: true)
     }
+    
+    @objc func formValidation(){
+        if latitudeTextfield.hasText && longitudeTextfield.hasText &&
+            magnitudeTextfield.hasText {
+            saveButton?.isUserInteractionEnabled = true
+            saveButton?.alpha = 1.0
+        }else{
+            saveButton?.isUserInteractionEnabled = false
+            saveButton?.alpha = 0.5
+        }
+    }
 
     @IBAction func saveButtonPressed(_ sender: UIButton) {
+        guard let lat = Float(latitudeTextfield.text!) else { return }
+        guard let lnt = Float(longitudeTextfield.text!) else { return }
+        guard let mag = Float(magnitudeTextfield.text!) else { return }
+        let datetime = earthquakeDatepicker.date
         
+        let earthquake = Earthquake(lat: lat, lnt: lnt, depth: 0, magnitude: mag, src: "", datetime: datetime)
+        service.saveEarthquake(object: earthquake)
+        dismiss(animated: true)
+    }
+    
+    //MARK: Helpers
+    
+    func setUI(){
+        saveButton?.isUserInteractionEnabled = false
+        saveButton?.alpha = 0.5
     }
     
     func loadData(){

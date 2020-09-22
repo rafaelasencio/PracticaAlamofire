@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840412E82519E306005563B3 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840412E72519E306005563B3 /* RealmService.swift */; };
+		840412EB251A0353005563B3 /* RealmEarthquakesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840412EA251A0353005563B3 /* RealmEarthquakesController.swift */; };
+		840412ED251A06B8005563B3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840412EC251A06B8005563B3 /* Constants.swift */; };
+		840412EF251A071C005563B3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840412EE251A071C005563B3 /* Extensions.swift */; };
 		849F2BB025188D0300C6CB98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F2BAF25188D0300C6CB98 /* AppDelegate.swift */; };
 		849F2BB225188D0300C6CB98 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F2BB125188D0300C6CB98 /* SceneDelegate.swift */; };
 		849F2BB725188D0300C6CB98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849F2BB525188D0300C6CB98 /* Main.storyboard */; };
 		849F2BB925188D0400C6CB98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 849F2BB825188D0400C6CB98 /* Assets.xcassets */; };
 		849F2BBC25188D0400C6CB98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849F2BBA25188D0400C6CB98 /* LaunchScreen.storyboard */; };
 		849F2BCA251896E500C6CB98 /* Earthquake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F2BC9251896E500C6CB98 /* Earthquake.swift */; };
-		849F2BCC2518B3E400C6CB98 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F2BCB2518B3E400C6CB98 /* TableViewController.swift */; };
+		849F2BCC2518B3E400C6CB98 /* AlamofireEarthquakesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F2BCB2518B3E400C6CB98 /* AlamofireEarthquakesController.swift */; };
 		849F2BD32518B50300C6CB98 /* EarthquakeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F2BD12518B50300C6CB98 /* EarthquakeCell.swift */; };
 		849F2BD42518B50300C6CB98 /* EarthquakeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849F2BD22518B50300C6CB98 /* EarthquakeCell.xib */; };
 		849F2BD72518DC5000C6CB98 /* SaveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F2BD52518DC5000C6CB98 /* SaveController.swift */; };
@@ -22,6 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		840412E72519E306005563B3 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		840412EA251A0353005563B3 /* RealmEarthquakesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmEarthquakesController.swift; sourceTree = "<group>"; };
+		840412EC251A06B8005563B3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		840412EE251A071C005563B3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		849F2BAC25188D0300C6CB98 /* PracticaAlamofire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PracticaAlamofire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849F2BAF25188D0300C6CB98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		849F2BB125188D0300C6CB98 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,7 +38,7 @@
 		849F2BBB25188D0400C6CB98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		849F2BBD25188D0400C6CB98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		849F2BC9251896E500C6CB98 /* Earthquake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Earthquake.swift; sourceTree = "<group>"; };
-		849F2BCB2518B3E400C6CB98 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		849F2BCB2518B3E400C6CB98 /* AlamofireEarthquakesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireEarthquakesController.swift; sourceTree = "<group>"; };
 		849F2BD12518B50300C6CB98 /* EarthquakeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeCell.swift; sourceTree = "<group>"; };
 		849F2BD22518B50300C6CB98 /* EarthquakeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EarthquakeCell.xib; sourceTree = "<group>"; };
 		849F2BD52518DC5000C6CB98 /* SaveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveController.swift; sourceTree = "<group>"; };
@@ -61,6 +69,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		840412E92519E30D005563B3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				840412E72519E306005563B3 /* RealmService.swift */,
+				840412EC251A06B8005563B3 /* Constants.swift */,
+				840412EE251A071C005563B3 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		849F2BA325188D0300C6CB98 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +103,7 @@
 				849F2BC625188E1700C6CB98 /* Model */,
 				849F2BC825188E2500C6CB98 /* Controller */,
 				849F2BC725188E1F00C6CB98 /* View */,
+				840412E92519E30D005563B3 /* Utils */,
 				849F2BAF25188D0300C6CB98 /* AppDelegate.swift */,
 				849F2BB125188D0300C6CB98 /* SceneDelegate.swift */,
 				849F2BB825188D0400C6CB98 /* Assets.xcassets */,
@@ -105,9 +124,10 @@
 			isa = PBXGroup;
 			children = (
 				849F2BB525188D0300C6CB98 /* Main.storyboard */,
-				849F2BBA25188D0400C6CB98 /* LaunchScreen.storyboard */,
-				849F2BD22518B50300C6CB98 /* EarthquakeCell.xib */,
 				849F2BD92518DD5E00C6CB98 /* Save.storyboard */,
+				849F2BD22518B50300C6CB98 /* EarthquakeCell.xib */,
+				849F2BD12518B50300C6CB98 /* EarthquakeCell.swift */,
+				849F2BBA25188D0400C6CB98 /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -115,9 +135,9 @@
 		849F2BC825188E2500C6CB98 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				849F2BCB2518B3E400C6CB98 /* TableViewController.swift */,
-				849F2BD12518B50300C6CB98 /* EarthquakeCell.swift */,
+				849F2BCB2518B3E400C6CB98 /* AlamofireEarthquakesController.swift */,
 				849F2BD52518DC5000C6CB98 /* SaveController.swift */,
+				840412EA251A0353005563B3 /* RealmEarthquakesController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -248,11 +268,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				849F2BCA251896E500C6CB98 /* Earthquake.swift in Sources */,
-				849F2BCC2518B3E400C6CB98 /* TableViewController.swift in Sources */,
+				849F2BCC2518B3E400C6CB98 /* AlamofireEarthquakesController.swift in Sources */,
+				840412E82519E306005563B3 /* RealmService.swift in Sources */,
 				849F2BD72518DC5000C6CB98 /* SaveController.swift in Sources */,
+				840412EB251A0353005563B3 /* RealmEarthquakesController.swift in Sources */,
+				840412EF251A071C005563B3 /* Extensions.swift in Sources */,
 				849F2BB025188D0300C6CB98 /* AppDelegate.swift in Sources */,
 				849F2BB225188D0300C6CB98 /* SceneDelegate.swift in Sources */,
 				849F2BD32518B50300C6CB98 /* EarthquakeCell.swift in Sources */,
+				840412ED251A06B8005563B3 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
