@@ -14,24 +14,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="J5F-Oh-wnN">
-                            <rect key="frame" x="0.0" y="99.5" width="414" height="70"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ud7-Q2-OB4">
-                                    <rect key="frame" x="188.5" y="10" width="37" height="50"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="37" id="8mR-NQ-ZLH"/>
-                                        <constraint firstAttribute="height" constant="37" id="NiJ-YU-lDw"/>
-                                    </constraints>
-                                </activityIndicatorView>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="ud7-Q2-OB4" firstAttribute="centerX" secondItem="J5F-Oh-wnN" secondAttribute="centerX" id="38l-aj-0kr"/>
-                                <constraint firstItem="ud7-Q2-OB4" firstAttribute="top" secondItem="J5F-Oh-wnN" secondAttribute="top" constant="10" id="jQk-s6-sbV"/>
-                                <constraint firstItem="ud7-Q2-OB4" firstAttribute="centerY" secondItem="J5F-Oh-wnN" secondAttribute="centerY" id="tgW-vI-quD"/>
-                            </constraints>
-                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellId" id="X0X-1H-nXA">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -48,11 +30,9 @@
                             <outlet property="delegate" destination="aHe-I3-xxF" id="4Ff-xd-XVk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="dyK-kP-CFM"/>
-                    <connections>
-                        <outlet property="activityIndicator" destination="ud7-Q2-OB4" id="lUH-Qo-DMc"/>
-                        <outlet property="activityView" destination="J5F-Oh-wnN" id="TY9-xP-G82"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="dyK-kP-CFM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="vrL-qx-tkm"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ki1-Bq-mQK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

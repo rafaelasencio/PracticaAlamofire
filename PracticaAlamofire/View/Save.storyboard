@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Save Controller-->
+        <scene sceneID="gKj-Mi-y1P">
+            <objects>
+                <viewController storyboardIdentifier="Save" id="K0h-9P-3qz" customClass="SaveController" customModule="PracticaAlamofire" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D8d-F7-Jmz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Mnx-D8-ees">
+                                <rect key="frame" x="20" y="192" width="335" height="428"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="latitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AuX-2d-crg">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="longitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XRe-Fy-imr">
+                                        <rect key="frame" x="0.0" y="54" width="335" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="magnitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="etU-zh-glT">
+                                        <rect key="frame" x="0.0" y="108" width="335" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cn-pg-avV">
+                                        <rect key="frame" x="0.0" y="162" width="335" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="622397643.07310903">
+                                            <!--2020-09-21 16:14:03 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3d4-aH-fir">
+                                        <rect key="frame" x="0.0" y="398" width="335" height="30"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="K0h-9P-3qz" eventType="touchUpInside" id="qgt-JP-lKf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="AuX-2d-crg" firstAttribute="width" secondItem="Mnx-D8-ees" secondAttribute="width" id="JdX-wN-B79"/>
+                                    <constraint firstItem="4cn-pg-avV" firstAttribute="width" secondItem="Mnx-D8-ees" secondAttribute="width" id="Kfj-yH-c6q"/>
+                                    <constraint firstItem="XRe-Fy-imr" firstAttribute="width" secondItem="Mnx-D8-ees" secondAttribute="width" id="Zyg-cq-Dif"/>
+                                    <constraint firstItem="etU-zh-glT" firstAttribute="width" secondItem="Mnx-D8-ees" secondAttribute="width" id="kcq-WX-m4H"/>
+                                    <constraint firstItem="3d4-aH-fir" firstAttribute="width" secondItem="Mnx-D8-ees" secondAttribute="width" id="ugE-Xu-EQi"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Mnx-D8-ees" firstAttribute="leading" secondItem="gMS-cz-aRN" secondAttribute="leading" constant="20" id="2er-60-Hiz"/>
+                            <constraint firstItem="Mnx-D8-ees" firstAttribute="centerX" secondItem="D8d-F7-Jmz" secondAttribute="centerX" id="HTn-cE-dxU"/>
+                            <constraint firstItem="Mnx-D8-ees" firstAttribute="centerY" secondItem="D8d-F7-Jmz" secondAttribute="centerY" id="NBG-e6-R1K"/>
+                            <constraint firstItem="gMS-cz-aRN" firstAttribute="trailing" secondItem="Mnx-D8-ees" secondAttribute="trailing" constant="20" id="our-80-a9a"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gMS-cz-aRN"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2QA-hA-1fP"/>
+                    <connections>
+                        <outlet property="earthquakeDatepicker" destination="4cn-pg-avV" id="Odi-7I-gAV"/>
+                        <outlet property="latitudeTextfield" destination="AuX-2d-crg" id="Xwq-fz-qTn"/>
+                        <outlet property="longitudeTextfield" destination="XRe-Fy-imr" id="bzw-AH-yzk"/>
+                        <outlet property="magnitudeTextfield" destination="etU-zh-glT" id="Hsy-JM-k8g"/>
+                        <outlet property="saveButton" destination="3d4-aH-fir" id="mt1-QO-89P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kvL-iL-rXF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="109.82142857142857"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jGR-7B-aNh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="drX-bO-mdr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="96q-x0-7hl">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="K0h-9P-3qz" kind="relationship" relationship="rootViewController" id="u0F-cH-QKk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NZ5-4O-9rb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="109.82142857142857"/>
+        </scene>
+    </scenes>
+</document>

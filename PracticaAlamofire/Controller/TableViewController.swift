@@ -16,44 +16,32 @@ class TableViewController: UITableViewController {
 
     //MARK: Properties
     var earthquakesArray: [Earthquakes.Earthquake] = []
-    
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var activityView: UIView!
-    
-    
+        
     //MARK: lifecycle
         override func viewDidLoad() {
         super.viewDidLoad()
             tableView.register(UINib(nibName: "EarthquakeCell", bundle: nil), forCellReuseIdentifier: earthquakeCellIdentifier)
-            activityView.isHidden = true
-            activityIndicator.isHidden = true
         execute(URL(string: API_URL)!)
     }
     
     //MARK: Functions
     private func execute(_ url: URL){
-        activityIndicator.startAnimating()
-        activityView.isHidden = false
-        activityIndicator.isHidden = false
+        
         DispatchQueue.global().async {
             sleep(2)
-            let request = AF.request(url)
-            request.responseJSON { response in
-                if let error = response.error {
-                    print(error)
-                }
-                guard let data = response.data else { return }
-                if let earthquake = try? JSONDecoder().decode(Earthquakes.self, from: data) {
+            AF.request(url).responseDecodable(of: Earthquakes.self) { (response) in
+                switch(response.result){
+                case let .success(earthquake):
                     for earthquake in earthquake.earthquakes {
                         self.earthquakesArray.append(earthquake)
                     }
-                    DispatchQueue.main.async {
-                        self.activityIndicator.stopAnimating()
-                        self.activityIndicator.hidesWhenStopped = true
-                        self.activityView.isHidden = true
-                        self.tableView.reloadData()
-                        self.navigationController?.navigationBar.topItem?.title = "Total \(self.earthquakesArray.count)"
-                    }
+                    break
+                case let .failure(error):
+                    print(error)
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.navigationController?.navigationBar.topItem?.title = "Total \(self.earthquakesArray.count)"
                 }
             }
         }
@@ -75,7 +63,10 @@ class TableViewController: UITableViewController {
         if earthquakesArray.count <= 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
             cell.textLabel?.text = "No data Available"
-            cell.textLabel?.textAlignment = .center
+            cell.textLabel?.textAlignment = .left
+            let activityIndicator = UIActivityIndicatorView(style: .large)
+            activityIndicator.startAnimating()
+            cell.accessoryView = activityIndicator
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: earthquakeCellIdentifier, for: indexPath) as! EarthquakeCell
@@ -87,6 +78,17 @@ class TableViewController: UITableViewController {
             cell.datetimeLabel.text = date
             return cell
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let storyboard = UIStoryboard(name: "Save", bundle: nil)
+        let saveVC = storyboard.instantiateViewController(withIdentifier: "Save") as! SaveController
+        let nv = UINavigationController(rootViewController: saveVC)
+        nv.modalPresentationStyle = .fullScreen
+        let earthquake = earthquakesArray[indexPath.row]
+        saveVC.earthquake = earthquake
+        self.present(nv, animated: true)
     }
     
     //MARK: Helpers

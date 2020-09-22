@@ -16,6 +16,8 @@
 		849F2BCC2518B3E400C6CB98 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F2BCB2518B3E400C6CB98 /* TableViewController.swift */; };
 		849F2BD32518B50300C6CB98 /* EarthquakeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F2BD12518B50300C6CB98 /* EarthquakeCell.swift */; };
 		849F2BD42518B50300C6CB98 /* EarthquakeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849F2BD22518B50300C6CB98 /* EarthquakeCell.xib */; };
+		849F2BD72518DC5000C6CB98 /* SaveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F2BD52518DC5000C6CB98 /* SaveController.swift */; };
+		849F2BDA2518DD5E00C6CB98 /* Save.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849F2BD92518DD5E00C6CB98 /* Save.storyboard */; };
 		CD81D794710385EBB3828E1D /* Pods_PracticaAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E09EB8E362E6378B42780 /* Pods_PracticaAlamofire.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		849F2BCB2518B3E400C6CB98 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		849F2BD12518B50300C6CB98 /* EarthquakeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeCell.swift; sourceTree = "<group>"; };
 		849F2BD22518B50300C6CB98 /* EarthquakeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EarthquakeCell.xib; sourceTree = "<group>"; };
+		849F2BD52518DC5000C6CB98 /* SaveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveController.swift; sourceTree = "<group>"; };
+		849F2BD92518DD5E00C6CB98 /* Save.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Save.storyboard; sourceTree = "<group>"; };
 		A1CEA58CEB688D061EB0747E /* Pods-PracticaAlamofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PracticaAlamofire.release.xcconfig"; path = "Target Support Files/Pods-PracticaAlamofire/Pods-PracticaAlamofire.release.xcconfig"; sourceTree = "<group>"; };
 		F66FA58F185E7F39B39E745F /* Pods-PracticaAlamofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PracticaAlamofire.debug.xcconfig"; path = "Target Support Files/Pods-PracticaAlamofire/Pods-PracticaAlamofire.debug.xcconfig"; sourceTree = "<group>"; };
 		FD7E09EB8E362E6378B42780 /* Pods_PracticaAlamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PracticaAlamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +107,7 @@
 				849F2BB525188D0300C6CB98 /* Main.storyboard */,
 				849F2BBA25188D0400C6CB98 /* LaunchScreen.storyboard */,
 				849F2BD22518B50300C6CB98 /* EarthquakeCell.xib */,
+				849F2BD92518DD5E00C6CB98 /* Save.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 			children = (
 				849F2BCB2518B3E400C6CB98 /* TableViewController.swift */,
 				849F2BD12518B50300C6CB98 /* EarthquakeCell.swift */,
+				849F2BD52518DC5000C6CB98 /* SaveController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -188,6 +194,7 @@
 				849F2BB925188D0400C6CB98 /* Assets.xcassets in Resources */,
 				849F2BD42518B50300C6CB98 /* EarthquakeCell.xib in Resources */,
 				849F2BB725188D0300C6CB98 /* Main.storyboard in Resources */,
+				849F2BDA2518DD5E00C6CB98 /* Save.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +249,7 @@
 			files = (
 				849F2BCA251896E500C6CB98 /* Earthquake.swift in Sources */,
 				849F2BCC2518B3E400C6CB98 /* TableViewController.swift in Sources */,
+				849F2BD72518DC5000C6CB98 /* SaveController.swift in Sources */,
 				849F2BB025188D0300C6CB98 /* AppDelegate.swift in Sources */,
 				849F2BB225188D0300C6CB98 /* SceneDelegate.swift in Sources */,
 				849F2BD32518B50300C6CB98 /* EarthquakeCell.swift in Sources */,

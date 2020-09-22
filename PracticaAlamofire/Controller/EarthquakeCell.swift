@@ -17,6 +17,7 @@ class EarthquakeCell: UITableViewCell {
     @IBOutlet weak var magnitudeLabel: UILabel!
     @IBOutlet weak var datetimeLabel: UILabel!
     
+    // MARK: - Init
     
     override func awakeFromNib() {
         super.awakeFromNib()
