@@ -25,7 +25,7 @@ class AlamofireEarthquakesController: UITableViewController {
     private func execute(_ url: URL){
         
         DispatchQueue.global().async {
-            sleep(2)
+//            sleep(2)
             AF.request(url).responseDecodable(of: Earthquakes.self) { (response) in
                 switch(response.result){
                 case let .success(earthquake):

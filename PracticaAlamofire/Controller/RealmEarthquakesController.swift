@@ -13,18 +13,17 @@ class RealmEarthquakesController: UITableViewController {
 
     // MARK: - Properties
     var realmEarthquakes: Results<Earthquake>!
-    var notificationToken: NotificationToken?
+    
     
     // MARK: - Lifecycle
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "EarthquakeCell", bundle: nil), forCellReuseIdentifier: earthquakeCellIdentifier)
-        realmEarthquakes = realm.objects(Earthquake.self)
         
-        notificationToken = realm.observe { (notification, realm) in
-            self.tableView.reloadData()
-        }
+        loadData()
         
         RealmService.shared.observeRealmErrors(in: self) { (error) in
             print(error!)
@@ -34,8 +33,8 @@ class RealmEarthquakesController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        notificationToken?.invalidate()
-        RealmService.shared.stopObservingErrors(in: self)
+//        notificationToken?.invalidate()
+//        RealmService.shared.stopObservingErrors(in: self)
     }
     
     // MARK: - Functions
@@ -82,14 +81,11 @@ class RealmEarthquakesController: UITableViewController {
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
         
-        if editingStyle == .delete {
-            let earthquake = realmEarthquakes[indexPath.row]
-            RealmService.shared.delete(earthquake)
+        let earthquake = realmEarthquakes[indexPath.row]
+        RealmService.shared.delete(earthquake)
             
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-        }    
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
