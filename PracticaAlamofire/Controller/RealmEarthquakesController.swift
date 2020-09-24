@@ -7,26 +7,54 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RealmEarthquakesController: UITableViewController {
 
     // MARK: - Properties
-    var earthquakeArray: [Earthquake] = []
+    var realmEarthquakes: Results<Earthquake>!
+    var notificationToken: NotificationToken?
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "EarthquakeCell", bundle: nil), forCellReuseIdentifier: earthquakeCellIdentifier)
-        loadData()
+        realmEarthquakes = realm.objects(Earthquake.self)
+        
+        notificationToken = realm.observe { (notification, realm) in
+            self.tableView.reloadData()
+        }
+        
+        RealmService.shared.observeRealmErrors(in: self) { (error) in
+            print(error!)
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        notificationToken?.invalidate()
+        RealmService.shared.stopObservingErrors(in: self)
     }
     
     // MARK: - Functions
     func loadData(){
-        for earthquake in service.getEarthquakes() {
-            earthquakeArray.append(earthquake)
+        realmEarthquakes = realm.objects(Earthquake.self)
+        
+        notificationToken = realm.observe { (notification, realm) in
+            self.tableView.reloadData()
         }
-        tableView.reloadData()
+    }
+    
+    //MARK: Actions
+    
+    @IBAction func createNewEarthquake(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Save", bundle: nil)
+        let saveVC = storyboard.instantiateViewController(withIdentifier: "Save") as! SaveController
+        let nv = UINavigationController(rootViewController: saveVC)
+        nv.modalPresentationStyle = .fullScreen
+        self.present(nv, animated: true)
     }
 
     // MARK: - Table view data source
@@ -38,11 +66,11 @@ class RealmEarthquakesController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return earthquakeArray.count
+        return realmEarthquakes.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let earthquake = earthquakeArray[indexPath.row]
+        let earthquake = realmEarthquakes[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: earthquakeCellIdentifier, for: indexPath) as! EarthquakeCell
         cell.longitudeLabel.text = "\(earthquake.lnt)"
         cell.latitudeLabel.text = "\(earthquake.lat)"
@@ -56,16 +84,25 @@ class RealmEarthquakesController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            let earthquake = earthquakeArray[indexPath.row]
-            service.delete(object: earthquake)
-            earthquakeArray.remove(at: indexPath.row)
+            let earthquake = realmEarthquakes[indexPath.row]
+            RealmService.shared.delete(earthquake)
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
         }    
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
+        
+        let storyboard = UIStoryboard(name: "Save", bundle: nil)
+        let saveVC = storyboard.instantiateViewController(withIdentifier: "Save") as! SaveController
+        let nv = UINavigationController(rootViewController: saveVC)
+        nv.modalPresentationStyle = .fullScreen
+        let earthquake = realmEarthquakes[indexPath.row]
+        saveVC.updateRealmValue = true
+        saveVC.earthquake = earthquake
+        self.present(nv, animated: true)
     }
     
 }

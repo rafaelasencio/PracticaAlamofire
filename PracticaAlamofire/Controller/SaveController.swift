@@ -11,7 +11,8 @@ import UIKit
 class SaveController: UIViewController {
 
     // MARK: - Properties
-    var earthquake: Earthquakes.Earthquake?
+    var earthquake: AnyObject?
+    var updateRealmValue: Bool = false
     
     // MARK: - IBOulets
     @IBOutlet weak var latitudeTextfield: UITextField!
@@ -60,8 +61,16 @@ class SaveController: UIViewController {
         guard let mag = Float(magnitudeTextfield.text!) else { return }
         let datetime = earthquakeDatepicker.date
         
-        let earthquake = Earthquake(lat: lat, lnt: lnt, depth: 0, magnitude: mag, src: "", datetime: datetime)
-        service.saveEarthquake(object: earthquake)
+        
+        if updateRealmValue {
+            guard let earthquake = earthquake as? Earthquake else { return }
+            let dict: [String: Any?] = ["lat":lat, "lnt":lnt, "magnitude":mag, "d":datetime]
+            RealmService.shared.update(earthquake, with: dict)
+        } else {
+            let earthquake = Earthquake(lat: lat, lnt: lnt, depth: 0, magnitude: mag, src: "", datetime: datetime)
+            RealmService.shared.create(earthquake)
+            navigationController?.popToRootViewController(animated: true)
+        }
         dismiss(animated: true)
     }
     
@@ -73,16 +82,21 @@ class SaveController: UIViewController {
     }
     
     func loadData(){
-        guard let earthquake = earthquake else { return }
-        latitudeTextfield.text = "\(earthquake.lat)"
-        longitudeTextfield.text = "\(earthquake.lng)"
-        magnitudeTextfield.text = "\(earthquake.magnitude)"
-        let formater = DateFormatter()
-        formater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let datetime = formater.date(from: earthquake.datetime)
-        earthquakeDatepicker.setDate(datetime ?? Date(), animated: true)
+        if let earthquake = earthquake as? Earthquake {
+            latitudeTextfield.text = "\(earthquake.lat)"
+            longitudeTextfield.text = "\(earthquake.lnt)"
+            magnitudeTextfield.text = "\(earthquake.magnitude)"
+            earthquakeDatepicker.setDate(earthquake.datetime, animated: true)
+            
+        }
+        if let earthquake = earthquake as? Earthquakes.Earthquake {
+            latitudeTextfield.text = "\(earthquake.lat)"
+            longitudeTextfield.text = "\(earthquake.lng)"
+            magnitudeTextfield.text = "\(earthquake.magnitude)"
+            let formater = DateFormatter()
+            formater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let datetime = formater.date(from: earthquake.datetime)
+            earthquakeDatepicker.setDate(datetime ?? Date(), animated: true)
+        }
     }
-    
-
-
 }

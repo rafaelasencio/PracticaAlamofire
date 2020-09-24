@@ -12,7 +12,7 @@ import Alamofire
 class AlamofireEarthquakesController: UITableViewController {
 
     //MARK: Properties
-    var earthquakesArray: [Earthquakes.Earthquake] = []
+    var alamoEarthquakeArray: [Earthquakes.Earthquake] = []
         
     //MARK: lifecycle
         override func viewDidLoad() {
@@ -30,7 +30,7 @@ class AlamofireEarthquakesController: UITableViewController {
                 switch(response.result){
                 case let .success(earthquake):
                     for earthquake in earthquake.earthquakes {
-                        self.earthquakesArray.append(earthquake)
+                        self.alamoEarthquakeArray.append(earthquake)
                     }
                     break
                 case let .failure(error):
@@ -38,7 +38,7 @@ class AlamofireEarthquakesController: UITableViewController {
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    self.navigationController?.navigationBar.topItem?.title = "Total \(self.earthquakesArray.count)"
+                    self.navigationController?.navigationBar.topItem?.title = "Total \(self.alamoEarthquakeArray.count)"
                 }
             }
         }
@@ -52,12 +52,12 @@ class AlamofireEarthquakesController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return earthquakesArray.count == 0 ? 1 : earthquakesArray.count
+        return alamoEarthquakeArray.count == 0 ? 1 : alamoEarthquakeArray.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if earthquakesArray.count <= 0 {
+        if alamoEarthquakeArray.count <= 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
             cell.textLabel?.text = "No data Available"
             cell.textLabel?.textAlignment = .left
@@ -67,12 +67,11 @@ class AlamofireEarthquakesController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: earthquakeCellIdentifier, for: indexPath) as! EarthquakeCell
-            let earthquake = earthquakesArray[indexPath.row]
+            let earthquake = alamoEarthquakeArray[indexPath.row]
             cell.longitudeLabel.text = "\(earthquake.lng)"
             cell.latitudeLabel.text = "\(earthquake.lat)"
             cell.magnitudeLabel.text = "\(earthquake.magnitude)"
-            let date = formatDate(earthquake.datetime)
-            cell.datetimeLabel.text = date
+            cell.datetimeLabel.text = earthquake.datetime
             return cell
         }
     }
@@ -83,20 +82,12 @@ class AlamofireEarthquakesController: UITableViewController {
         let saveVC = storyboard.instantiateViewController(withIdentifier: "Save") as! SaveController
         let nv = UINavigationController(rootViewController: saveVC)
         nv.modalPresentationStyle = .fullScreen
-        let earthquake = earthquakesArray[indexPath.row]
-        saveVC.earthquake = earthquake
+        let earthquake = alamoEarthquakeArray[indexPath.row]
+        saveVC.earthquake = earthquake as AnyObject
         self.present(nv, animated: true)
     }
     
-    //MARK: Actions
     
-    @IBAction func createNewEarthquake(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Save", bundle: nil)
-        let saveVC = storyboard.instantiateViewController(withIdentifier: "Save") as! SaveController
-        let nv = UINavigationController(rootViewController: saveVC)
-        nv.modalPresentationStyle = .fullScreen
-        self.present(nv, animated: true)
-    }
     
     
 

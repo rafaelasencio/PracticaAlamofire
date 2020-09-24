@@ -12,4 +12,4 @@ let API_URL = "http://api.geonames.org/earthquakesJSON?north=44.1&south=-9.9&eas
 
 let earthquakeCellIdentifier = "earthquakeCell"
 
-let service = RealmService()
+let realm = RealmService.shared.realm

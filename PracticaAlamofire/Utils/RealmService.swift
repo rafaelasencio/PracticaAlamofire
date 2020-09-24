@@ -26,32 +26,63 @@ class Earthquake: Object {
         self.src = src
         self.datetime = datetime
     }
-    
-//    required init() {
-//        fatalError("init() has not been implemented")
-//    }
 }
 
 class RealmService {
     
+    static let shared = RealmService()
+    
     let realm = try! Realm()
     
-    func saveEarthquake(object: Earthquake){
-        print(Realm.Configuration.defaultConfiguration.fileURL)
-        realm.beginWrite()
-        realm.add(object)
-        try? realm.commitWrite()
+    func create<T: Object>(_ object: T){
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        do {
+            try realm.write {
+                realm.add(object)
+            }
+        } catch {
+            post(error)
+        }
     }
     
-    func getEarthquakes() -> Results<Earthquake> {
-        let earthquakes = realm.objects(Earthquake.self)
-        return earthquakes
+    func update<T: Object>(_ object: T, with dictionary: [String: Any?]){
+        do {
+            try realm.write {
+                for (key, value) in dictionary {
+                    object.setValue(value, forKey: key)
+                }
+            }
+        } catch {
+            post(error)
+        }
     }
     
-    func delete(object: Earthquake){
-        realm.beginWrite()
-        realm.delete(object)
-        try? realm.commitWrite()
+    func delete<T: Object>(_ object: T){
+        do {
+            try realm.write {
+                realm.delete(object)
+            }
+        } catch {
+            post(error)
+        }
+    }
+    
+    func getObjects() -> Results<Earthquake> {
+        return realm.objects(Earthquake.self)
+    }
+    
+    func post(_ error: Error) {
+        NotificationCenter.default.post(name: NSNotification.Name("RealmError"), object: error)
+    }
+    
+    func observeRealmErrors(in vc: UIViewController, completion:@escaping(Error?)->()){
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("RealmError"), object: nil, queue: nil) { (notification) in
+            completion(notification.object as? Error)
+        }
+    }
+    
+    func stopObservingErrors(in vc: UIViewController){
+        NotificationCenter.default.removeObserver(vc, name: NSNotification.Name("RealmError"), object: nil)
     }
     
     
