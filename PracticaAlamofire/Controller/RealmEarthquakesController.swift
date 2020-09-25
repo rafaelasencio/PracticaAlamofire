@@ -14,6 +14,9 @@ class RealmEarthquakesController: UITableViewController {
     // MARK: - Properties
     var realmEarthquakes: Results<Earthquake>!
     
+    //MARK: - IBOulets
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     // MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -24,26 +27,31 @@ class RealmEarthquakesController: UITableViewController {
         tableView.register(UINib(nibName: "EarthquakeCell", bundle: nil), forCellReuseIdentifier: earthquakeCellIdentifier)
         
         loadData()
-        
-        RealmService.shared.observeRealmErrors(in: self) { (error) in
-            print(error!)
-        }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        notificationToken?.invalidate()
-//        RealmService.shared.stopObservingErrors(in: self)
+        notificationToken?.invalidate()
     }
     
     // MARK: - Functions
     func loadData(){
         realmEarthquakes = realm.objects(Earthquake.self)
-        
-        notificationToken = realm.observe { (notification, realm) in
-            self.tableView.reloadData()
-        }
+        notificationToken = realmEarthquakes.observe({ (changes) in
+            switch changes {
+            
+            case .initial(_): //primera carga
+                self.tableView.reloadData()
+            case .update(_, deletions: let deletions, insertions: let insertions, modifications: let modifications):
+                self.tableView.beginUpdates() //inicio cambios
+                self.tableView.deleteRows(at: deletions.map({IndexPath(row: $0, section: 0)}), with: .automatic)
+                self.tableView.insertRows(at: insertions.map({IndexPath(row: $0, section: 0)}), with: .automatic)
+                self.tableView.reloadRows(at: modifications.map({IndexPath(row: $0, section: 0)}), with: .automatic)
+                self.tableView.endUpdates()
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        })
     }
     
     //MARK: Actions
@@ -52,19 +60,17 @@ class RealmEarthquakesController: UITableViewController {
         let storyboard = UIStoryboard(name: "Save", bundle: nil)
         let saveVC = storyboard.instantiateViewController(withIdentifier: "Save") as! SaveController
         let nv = UINavigationController(rootViewController: saveVC)
-        nv.modalPresentationStyle = .fullScreen
+        nv.modalPresentationStyle = .overFullScreen
         self.present(nv, animated: true)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return realmEarthquakes.count
     }
 
@@ -79,7 +85,6 @@ class RealmEarthquakesController: UITableViewController {
     }
 
     
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         
@@ -102,3 +107,5 @@ class RealmEarthquakesController: UITableViewController {
     }
     
 }
+
+

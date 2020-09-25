@@ -40,8 +40,8 @@ class RealmService {
             try realm.write {
                 realm.add(object)
             }
-        } catch {
-            post(error)
+        } catch let error as NSError {
+            print(error.localizedDescription)
         }
     }
     
@@ -52,8 +52,8 @@ class RealmService {
                     object.setValue(value, forKey: key)
                 }
             }
-        } catch {
-            post(error)
+        } catch let error as NSError {
+            print(error.localizedDescription)
         }
     }
     
@@ -62,27 +62,13 @@ class RealmService {
             try realm.write {
                 realm.delete(object)
             }
-        } catch {
-            post(error)
+        } catch let error as NSError {
+            print(error.localizedDescription)
         }
     }
     
     func getObjects() -> Results<Earthquake> {
         return realm.objects(Earthquake.self)
-    }
-    
-    func post(_ error: Error) {
-        NotificationCenter.default.post(name: NSNotification.Name("RealmError"), object: error)
-    }
-    
-    func observeRealmErrors(in vc: UIViewController, completion:@escaping(Error?)->()){
-        NotificationCenter.default.addObserver(forName: NSNotification.Name("RealmError"), object: nil, queue: nil) { (notification) in
-            completion(notification.object as? Error)
-        }
-    }
-    
-    func stopObservingErrors(in vc: UIViewController){
-        NotificationCenter.default.removeObserver(vc, name: NSNotification.Name("RealmError"), object: nil)
     }
     
     

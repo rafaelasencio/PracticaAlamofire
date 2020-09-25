@@ -37,8 +37,6 @@ class SaveController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        notificationToken?.invalidate()
-//        RealmService.shared.stopObservingErrors(in: self)
     }
     
     // MARK: - Actions
