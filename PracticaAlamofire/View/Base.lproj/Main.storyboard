@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,48 +39,98 @@
             </objects>
             <point key="canvasLocation" x="804" y="-747"/>
         </scene>
-        <!--Realm Earthquakes-->
-        <scene sceneID="wYc-hL-7Ls">
+        <!--Realm Earthquakes Controller-->
+        <scene sceneID="ptG-lD-Cba">
             <objects>
-                <tableViewController id="aGB-si-jP6" customClass="RealmEarthquakesController" customModule="PracticaAlamofire" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YTr-I9-8fu">
+                <viewController id="VgX-jA-NdX" customClass="RealmEarthquakesController" customModule="PracticaAlamofire" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gFz-99-V2p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="Pwx-a8-7X5">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0nH-6y-GkT">
-                                <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0nH-6y-GkT" id="sL4-v2-41M">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="aGB-si-jP6" id="SmD-uq-TuD"/>
-                            <outlet property="delegate" destination="aGB-si-jP6" id="0iL-VQ-ufd"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Realm Earthquakes" id="EsO-jZ-KXF">
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KbW-F2-B2h">
+                                <rect key="frame" x="0.0" y="175" width="414" height="721"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="WAj-pm-dLv">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WAj-pm-dLv" id="zf1-5D-C0t">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="VgX-jA-NdX" id="bAV-F8-Z5L"/>
+                                    <outlet property="delegate" destination="VgX-jA-NdX" id="z7z-p0-zmC"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" placeholder="Search by Magnitude" translatesAutoresizingMaskIntoConstraints="NO" id="UnQ-mQ-aQH">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xKB-QM-7ht">
+                                <rect key="frame" x="10" y="144" width="359" height="32"/>
+                                <segments>
+                                    <segment title="Datetime"/>
+                                    <segment title="Magnitude"/>
+                                    <segment title="Depth"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFv-OB-TCG">
+                                <rect key="frame" x="373" y="144" width="31" height="31"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="31" id="7d0-ct-1zd"/>
+                                    <constraint firstAttribute="height" constant="31" id="vfY-WA-A4G"/>
+                                </constraints>
+                                <state key="normal" image="arrow.up" catalog="system"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fVE-q1-Trg"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xKB-QM-7ht" firstAttribute="leading" secondItem="fVE-q1-Trg" secondAttribute="leading" constant="10" id="0VL-f9-lBQ"/>
+                            <constraint firstItem="KbW-F2-B2h" firstAttribute="leading" secondItem="fVE-q1-Trg" secondAttribute="leading" id="3MO-ZP-hxn"/>
+                            <constraint firstItem="fVE-q1-Trg" firstAttribute="trailing" secondItem="KbW-F2-B2h" secondAttribute="trailing" id="6Za-cF-d1h"/>
+                            <constraint firstItem="KbW-F2-B2h" firstAttribute="top" secondItem="xKB-QM-7ht" secondAttribute="bottom" id="8SF-Rn-anW"/>
+                            <constraint firstItem="uFv-OB-TCG" firstAttribute="top" secondItem="UnQ-mQ-aQH" secondAttribute="bottom" id="9Lp-ho-E4f"/>
+                            <constraint firstAttribute="bottom" secondItem="KbW-F2-B2h" secondAttribute="bottom" id="B4s-R0-KCT"/>
+                            <constraint firstItem="xKB-QM-7ht" firstAttribute="top" secondItem="UnQ-mQ-aQH" secondAttribute="bottom" id="EZW-xG-2gU"/>
+                            <constraint firstAttribute="bottom" secondItem="KbW-F2-B2h" secondAttribute="bottom" id="Elk-Rx-d3d"/>
+                            <constraint firstItem="UnQ-mQ-aQH" firstAttribute="trailing" secondItem="fVE-q1-Trg" secondAttribute="trailing" id="TBb-FU-qAA"/>
+                            <constraint firstItem="fVE-q1-Trg" firstAttribute="trailing" secondItem="uFv-OB-TCG" secondAttribute="trailing" constant="10" id="Wv6-Qy-vBu"/>
+                            <constraint firstItem="uFv-OB-TCG" firstAttribute="leading" secondItem="xKB-QM-7ht" secondAttribute="trailing" constant="4" id="bQx-Cx-vYz"/>
+                            <constraint firstItem="UnQ-mQ-aQH" firstAttribute="leading" secondItem="fVE-q1-Trg" secondAttribute="leading" id="eIG-ZV-zNS"/>
+                            <constraint firstItem="KbW-F2-B2h" firstAttribute="trailing" secondItem="fVE-q1-Trg" secondAttribute="trailing" id="hmB-wd-saa"/>
+                            <constraint firstItem="KbW-F2-B2h" firstAttribute="leading" secondItem="fVE-q1-Trg" secondAttribute="leading" id="mcz-5x-7EL"/>
+                            <constraint firstItem="UnQ-mQ-aQH" firstAttribute="top" secondItem="fVE-q1-Trg" secondAttribute="top" id="pBg-Lp-iLY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="mHS-qr-gZ9">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vrL-qx-tkm">
                             <connections>
-                                <action selector="createNewEarthquake:" destination="aGB-si-jP6" id="TYz-lz-nrl"/>
+                                <action selector="createNewEarthquake:" destination="VgX-jA-NdX" id="pOb-fh-bSM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="Pwx-a8-7X5" id="OXJ-wt-Z4G"/>
+                        <outlet property="orderButton" destination="uFv-OB-TCG" id="l0K-Vx-bac"/>
+                        <outlet property="searchBar" destination="UnQ-mQ-aQH" id="IB6-8x-9mS"/>
+                        <outlet property="segmentControl" destination="xKB-QM-7ht" id="9mM-OA-R49"/>
+                        <outlet property="tableView" destination="KbW-F2-B2h" id="hOb-TX-WuT"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xgD-L5-ajU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8n1-5S-UVE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="742.02898550724649" y="48.883928571428569"/>
+            <point key="canvasLocation" x="742" y="45"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Gol-cx-2CU">
@@ -92,7 +143,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="EBZ-2T-SpU" kind="relationship" relationship="viewControllers" id="Hs2-Sx-pFZ"/>
-                        <segue destination="DHm-lW-B7T" kind="relationship" relationship="viewControllers" id="3bK-U2-8MA"/>
+                        <segue destination="IJk-9D-dV6" kind="relationship" relationship="viewControllers" id="uCw-Ay-Wk8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zV-ve-4if" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -119,30 +170,34 @@
             <point key="canvasLocation" x="-168" y="-746"/>
         </scene>
         <!--Realm-->
-        <scene sceneID="FTY-Xd-4hl">
+        <scene sceneID="rFh-7P-ENv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DHm-lW-B7T" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Realm" image="folder" catalog="system" id="egw-Vu-eYz"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IJk-9D-dV6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Realm" image="doc.plaintext" catalog="system" id="8Ep-QF-ns8"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0xd-UY-Dst">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ls1-ug-XMH">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="aGB-si-jP6" kind="relationship" relationship="rootViewController" id="dQS-eV-tFv"/>
+                        <segue destination="VgX-jA-NdX" kind="relationship" relationship="rootViewController" id="hki-s1-atj"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LZ4-F1-U8t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G01-aJ-ma7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-168.11594202898553" y="48.883928571428569"/>
+            <point key="canvasLocation" x="-168" y="45"/>
         </scene>
     </scenes>
     <resources>
-        <image name="folder" catalog="system" width="128" height="97"/>
+        <image name="arrow.up" catalog="system" width="120" height="128"/>
+        <image name="doc.plaintext" catalog="system" width="115" height="128"/>
         <image name="network" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -71,6 +71,15 @@ class RealmService {
         return realm.objects(Earthquake.self)
     }
     
+    func getObjects(with magnitude: Float) -> Results<Earthquake>? {
+        let result = realm.objects(Earthquake.self).filter("magnitude >= \((magnitude))")
+        return result
+    }
+    
+    func sortObjectsBy(_ keyPath: String, ascending: Bool) -> Results<Earthquake>? {
+        return realm.objects(Earthquake.self).sorted(byKeyPath: keyPath, ascending: ascending)
+    }
+    
     
 }
 

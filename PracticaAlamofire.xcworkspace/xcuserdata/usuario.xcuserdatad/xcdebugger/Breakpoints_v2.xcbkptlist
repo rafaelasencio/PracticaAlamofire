@@ -7,49 +7,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "64637DDE-5F80-496C-A377-CAA09837226A"
-            shouldBeEnabled = "Yes"
+            uuid = "249E4B66-768A-45A4-A48C-66C26966971E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PracticaAlamofire/Controller/AlamofireEarthquakesController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A74C3FC-4273-447A-8A01-5FEDCA3A9755"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PracticaAlamofire/Controller/RealmEarthquakesController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "loadData()"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "sortBySegmentValue(value:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "64637DDE-5F80-496C-A377-CAA09837226A - 39c9c4fe2a2de245"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (RealmSwift.RealmCollectionChange&lt;RealmSwift.Results&lt;PracticaAlamofire.Earthquake&gt;&gt;) -&gt; () in PracticaAlamofire.RealmEarthquakesController.loadData() -&gt; ()"
-                  moduleName = "PracticaAlamofire"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/usuario/Documents/xCodeProjects/PracticaAlamofire/PracticaAlamofire/Controller/RealmEarthquakesController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "48"
-                  endingLineNumber = "48"
-                  offsetFromSymbolStart = "92">
-               </Location>
-               <Location
-                  uuid = "64637DDE-5F80-496C-A377-CAA09837226A - 39c9c4fe2a2de245"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (RealmSwift.RealmCollectionChange&lt;RealmSwift.Results&lt;PracticaAlamofire.Earthquake&gt;&gt;) -&gt; () in PracticaAlamofire.RealmEarthquakesController.loadData() -&gt; ()"
-                  moduleName = "PracticaAlamofire"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/usuario/Documents/xCodeProjects/PracticaAlamofire/PracticaAlamofire/Controller/RealmEarthquakesController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "48"
-                  endingLineNumber = "48"
-                  offsetFromSymbolStart = "2809">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

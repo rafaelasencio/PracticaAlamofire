@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,7 +41,7 @@
                                             <!--2020-09-21 16:14:03 +0000-->
                                         </date>
                                     </datePicker>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3d4-aH-fir">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3d4-aH-fir">
                                         <rect key="frame" x="0.0" y="398" width="335" height="30"/>
                                         <state key="normal" title="Save"/>
                                         <connections>
@@ -56,14 +58,14 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="gMS-cz-aRN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Mnx-D8-ees" firstAttribute="leading" secondItem="gMS-cz-aRN" secondAttribute="leading" constant="20" id="2er-60-Hiz"/>
                             <constraint firstItem="Mnx-D8-ees" firstAttribute="centerX" secondItem="D8d-F7-Jmz" secondAttribute="centerX" id="HTn-cE-dxU"/>
                             <constraint firstItem="Mnx-D8-ees" firstAttribute="centerY" secondItem="D8d-F7-Jmz" secondAttribute="centerY" id="NBG-e6-R1K"/>
                             <constraint firstItem="gMS-cz-aRN" firstAttribute="trailing" secondItem="Mnx-D8-ees" secondAttribute="trailing" constant="20" id="our-80-a9a"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="gMS-cz-aRN"/>
                     </view>
                     <navigationItem key="navigationItem" id="2QA-hA-1fP"/>
                     <connections>
@@ -97,4 +99,9 @@
             <point key="canvasLocation" x="131.8840579710145" y="109.82142857142857"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

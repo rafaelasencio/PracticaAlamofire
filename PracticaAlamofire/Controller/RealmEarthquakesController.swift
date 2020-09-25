@@ -9,24 +9,32 @@
 import UIKit
 import RealmSwift
 
-class RealmEarthquakesController: UITableViewController {
+class RealmEarthquakesController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
     var realmEarthquakes: Results<Earthquake>!
     
     //MARK: - IBOulets
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var orderButton: UIButton!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     
-    
+    var orderButtonPressed = false
     // MARK: - Lifecycle
+    
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
+        loadData()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "EarthquakeCell", bundle: nil), forCellReuseIdentifier: earthquakeCellIdentifier)
-        
-        loadData()
+        searchBar.delegate = self
+//        loadData()
+        orderButton.addTarget(self, action: #selector(filterObjectsResult), for: .touchUpInside)
+        segmentControl.addTarget(self, action: #selector(sortBySegmentValue), for: .valueChanged)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -35,23 +43,45 @@ class RealmEarthquakesController: UITableViewController {
     }
     
     // MARK: - Functions
-    func loadData(){
+    private func loadData(){
         realmEarthquakes = realm.objects(Earthquake.self)
-        notificationToken = realmEarthquakes.observe({ (changes) in
+        notificationToken = realmEarthquakes.observe({ [weak self] (changes) in
+            guard let tableView = self?.tableView else { return }
             switch changes {
-            
             case .initial(_): //primera carga
-                self.tableView.reloadData()
+                tableView.reloadData()
             case .update(_, deletions: let deletions, insertions: let insertions, modifications: let modifications):
-                self.tableView.beginUpdates() //inicio cambios
-                self.tableView.deleteRows(at: deletions.map({IndexPath(row: $0, section: 0)}), with: .automatic)
-                self.tableView.insertRows(at: insertions.map({IndexPath(row: $0, section: 0)}), with: .automatic)
-                self.tableView.reloadRows(at: modifications.map({IndexPath(row: $0, section: 0)}), with: .automatic)
-                self.tableView.endUpdates()
+                tableView.beginUpdates() //inicio cambios
+                tableView.deleteRows(at: deletions.map({IndexPath(row: $0, section: 0)}), with: .automatic)
+                tableView.insertRows(at: insertions.map({IndexPath(row: $0, section: 0)}), with: .automatic)
+                tableView.reloadRows(at: modifications.map({IndexPath(row: $0, section: 0)}), with: .automatic)
+                tableView.endUpdates()
             case .error(let error):
                 print(error.localizedDescription)
             }
         })
+    }
+    
+    private func sortRealmObjects() {
+        let keypath = segmentControl.titleForSegment(at: segmentControl.selectedSegmentIndex)!
+        if searchBar.text!.isEmpty {
+            realmEarthquakes = RealmService.shared.sortObjectsBy(keypath.lowercased(), ascending: !orderButtonPressed)
+        } else {
+            
+            realmEarthquakes = RealmService.shared.sortObjectsBy(keypath.lowercased(), ascending: !orderButtonPressed)?.filter("magnitude >= \(searchBar.text!)")
+        }
+        tableView.reloadData()
+    }
+    
+    @objc func filterObjectsResult(){
+        orderButtonPressed = !orderButtonPressed
+        let image = orderButtonPressed ? "arrow.down" : "arrow.up"
+        orderButton.setImage(UIImage(systemName: image), for: .normal)
+        sortRealmObjects()
+    }
+    
+    @objc func sortBySegmentValue(value: Int){
+        sortRealmObjects()
     }
     
     //MARK: Actions
@@ -66,15 +96,15 @@ class RealmEarthquakesController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return realmEarthquakes.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let earthquake = realmEarthquakes[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: earthquakeCellIdentifier, for: indexPath) as! EarthquakeCell
         cell.longitudeLabel.text = "\(earthquake.lnt)"
@@ -85,7 +115,7 @@ class RealmEarthquakesController: UITableViewController {
     }
 
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         
         let earthquake = realmEarthquakes[indexPath.row]
@@ -93,7 +123,7 @@ class RealmEarthquakesController: UITableViewController {
             
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let storyboard = UIStoryboard(name: "Save", bundle: nil)
@@ -106,6 +136,20 @@ class RealmEarthquakesController: UITableViewController {
         self.present(nv, animated: true)
     }
     
+}
+
+extension RealmEarthquakesController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let text = searchBar.text!
+        if !text.isEmpty {
+            guard let magnitude = Float(text) else { return }
+            realmEarthquakes = RealmService.shared.getObjects(with: magnitude)
+        } else {
+            realmEarthquakes = realm.objects(Earthquake.self)
+        }
+        tableView.reloadData()
+    }
 }
 
 
